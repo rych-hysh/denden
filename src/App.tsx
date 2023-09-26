@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { createStyles, makeStyles, Theme} from "@mui/material/styles"
 import './App.css';
-import { Title } from './title/components/title';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Title from "./title/Title";
+import Lobby from "./lobby/lobby";
+import { ThemeProvider, createTheme } from "@mui/material";
 function App() {
   const myTheme = createTheme({
     palette: {
@@ -26,6 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Title />}/>
+        <Route path="/lobby" element={<Lobby />}/>
       </Routes>
     </BrowserRouter> 
   </ThemeProvider>
