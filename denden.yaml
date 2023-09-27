@@ -1,5 +1,21 @@
 Resources:
+  # room id, room number, fee, chips
   RoomTable: 
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: roomId
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: roomId
+          AttributeType: N
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+  #connection id, user name, order, chips, is parent, is fold, (room id?)
+  UserTable: 
     Type: AWS::DynamoDB::Table
     Properties:
       KeySchema:
@@ -8,6 +24,51 @@ Resources:
       AttributeDefinitions:
         - AttributeName: connectionId
           AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+  #id, room id, connection id
+  UserRoomTable: 
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: userRoomId
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: userRoomId
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+  #id, connection id, card 1, card 2, rank
+  HandTable: 
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: handId
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: handId
+          AttributeType: N
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+  #id, connection id, quantity
+  BetTable: 
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: betId
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: betId
+          AttributeType: N
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
